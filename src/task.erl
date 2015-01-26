@@ -10,6 +10,8 @@
 -export([start/1, start/3,
          start_link/1, start_link/3]).
 
+-export([get_info/1]).
+
 start(Fun) when erlang:is_function(Fun) ->
     start(erlang, apply, [Fun, []]).
 
@@ -28,7 +30,6 @@ async(Fun) when erlang:is_function(Fun) ->
 
 -spec async(atom(), atom(), [term()]) -> {pid(), reference()}.
 async(Mod, Fun, Args) ->
-    async_opt(Me),
     Me  = erlang:self(),
     Pid = proc_lib:spawn_link(task_supervised, async,
                               [Me, get_info(Me), {Mod, Fun, Args}]),
