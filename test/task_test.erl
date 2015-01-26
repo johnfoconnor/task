@@ -49,7 +49,7 @@ task_test_() ->
                        erlang:send(Pid, true),
                        ?assertEqual(true, lists:member(Pid, erlang:element(2, erlang:process_info(self(), links)))),
                        ?assertEqual(done, task:await(Task))
-               end},               
+               end},
               {"async/3",
                fun() ->
                        {Pid, _} = Task = task:async(?MODULE, wait_and_send, [self(), done]),
@@ -63,7 +63,7 @@ task_test_() ->
 
                        ?assertEqual(true, lists:member(Pid, erlang:element(2, erlang:process_info(self(), links)))),
                        ?assertEqual(done, task:await(Task))
-               end},               
+               end},
               {"async/4",
                fun() ->
                        net_kernel:start(['test@127.0.0.1']),
@@ -115,7 +115,7 @@ task_test_() ->
                        erlang:send(Pid, true),
                        ?assertEqual(true, lists:member(Pid, erlang:element(2, erlang:process_info(self(), links)))),
                        ?assertEqual(done, task:await(Task))
-               end},               
+               end},
               {"async_opt/4",
                fun() ->
                        Opts = [{fullsweep_after, 10}, {priority, high}],
